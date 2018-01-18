@@ -1,9 +1,9 @@
 
-def classifier(type, *statuses)
+def classifier(type, file, *statuses)
    i = 0
    tickets = []
 
-  File.open("Text.txt").readlines.each do |line|
+  File.open(file).readlines.each do |line|
     if line.include?(type) && statuses.inject(false) { |memo, status| line.include?(status) || memo }
       i += 1
       tickets << line.split("\t")[1]
@@ -29,13 +29,13 @@ Christophe & Laurent
 
 "
 puts "Tickets delivered during last sprint\n\n"
-classifier('New Feature', 'RELEASED', 'CLOSED', 'DONE')
-classifier('Improvement','RELEASED', 'CLOSED', 'DONE')
-classifier('Task','RELEASED', 'CLOSED', 'DONE')
-classifier('Bug','RELEASED', 'CLOSED', 'DONE')
+classifier('New Feature','last_sprint.txt', 'RELEASED', 'CLOSED', 'DONE')
+classifier('Improvement','last_sprint.txt','RELEASED', 'CLOSED', 'DONE')
+classifier('Task','last_sprint.txt','RELEASED', 'CLOSED', 'DONE')
+classifier('Bug','last_sprint.txt','RELEASED', 'CLOSED', 'DONE')
 
 puts "Tickets not delivered during last sprint (will be transferred to next sprint)\n\n"
-classifier('New Feature','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
-classifier('Improvement','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
-classifier('Task','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
-classifier('Bug','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('New Feature','next_sprint.txt','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('Improvement','next_sprint.txt','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('Task','next_sprint.txt','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('Bug','next_sprint.txt','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
