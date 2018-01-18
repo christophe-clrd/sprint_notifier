@@ -1,68 +1,20 @@
 
-def classifier_done(type)
-
+def classifier(type, *statuses)
    i = 0
+   tickets = []
 
   File.open("Text.txt").readlines.each do |line|
-      if line.include?("JT") && (line.include?("RELEASED") || line.include?("CLOSED")) && line.include?(type)
-         i += 1
-      end
-  end
-
-  if i>0
-  print "#{i}"+" "+type.downcase
-    if i>1
-      print "s"
+    if line.include?(type) && statuses.inject(false) { |memo, status| line.include?(status) || memo }
+      i += 1
+      tickets << line.split("\t")[1]
     end
-  puts "\n"
-  i==0
-  end
-
-  File.open("Text.txt").readlines.each do |line|
-      if line.include?("JT") && (line.include?("RELEASED") || line.include?("CLOSED")) && line.include?(type)
-         puts line.split("\t")[1]
-      end
   end
 
   if i>0
-  puts "\n"
+    puts "#{i} #{type.downcase}#{'s' if i > 1}"
+    puts tickets
+    puts "\n"
   end
-
-end
-
-def classifier_not_done(type)
-
-   i = 0
-
-  File.open("Text.txt").readlines.each do |line|
-      if line.include?("JT") && line.include?(type)
-       unless (line.include?("RELEASED")) || line.include?("CLOSED")
-         i += 1
-       end
-      end
-  end
-
-  if i>0
-  print "#{i}"+" "+type.downcase
-    if i>1
-      print "s"
-    end
-  puts "\n"
-  i==0
-  end
-
-  File.open("Text.txt").readlines.each do |line|
-      if line.include?("JT") && line.include?(type)
-        unless  line.include?("RELEASED") || line.include?("CLOSED")
-         puts line.split("\t")[1]
-        end
-      end
-  end
-
-  if i>0
-  puts "\n"
-  end
-
 end
 
 puts "Hi everybody,
@@ -77,13 +29,13 @@ Christophe & Laurent
 
 "
 puts "Tickets delivered during last sprint\n\n"
-classifier_done ('New Feature')
-classifier_done ('Improvement')
-classifier_done ('Task')
-classifier_done ('Bug')
+classifier('New Feature', 'RELEASED', 'CLOSED', 'DONE')
+classifier('Improvement','RELEASED', 'CLOSED', 'DONE')
+classifier('Task','RELEASED', 'CLOSED', 'DONE')
+classifier('Bug','RELEASED', 'CLOSED', 'DONE')
 
 puts "Tickets not delivered during last sprint (will be transferred to next sprint)\n\n"
-classifier_not_done ('New Feature')
-classifier_not_done ('Improvement')
-classifier_not_done ('Task')
-classifier_not_done ('Bug')
+classifier('New Feature','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('Improvement','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('Task','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('Bug','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
