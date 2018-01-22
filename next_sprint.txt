@@ -1,0 +1,16 @@
+Completed Issues	View in Issue Navigator
+Key	Summary	Issue Type	Priority	Status	Story Points (15 → 27)
+JT-6795 *	Users without role and profile can't create a company/student account	Improvement	Normal	RELEASED	5
+JT-6919 *	[SCHO] School conf - Curriculums rank is not well saved	Bug	Normal	RELEASED	2
+JT-6921	[Scho] Appointment - Avatar des conseillers pop en haut de la page	Bug	Normal	RELEASED	- → 4
+JT-6962	NL - Ajouter le type de l'événement	New Feature	Normal	RELEASED	1
+JT-7064 *	NL - Handle two Career Center logos in the event newsletter	Improvement	Normal	RELEASED	2
+JT-7094 *	[Scho] SSO student recruteurs are not redirected to their recruiter BO	Bug	Important	RELEASED	3
+JT-7106 *	[Scho] When a school has no banner the newsletter is not well displayed	Bug	Important	RELEASED	2
+JT-7178 *	EV - Update Image upload	Improvement	Normal	RELEASED	- → 3
+JT-7184	[Scho] Events RSS feed - The start date is called deadline in the description	Bug	Important	RELEASED	- → 1
+JT-7186	[Scho] Send again the confirmation email to students from EBC	Task	Normal	IN REVIEW	- → 2
+JT-7188	Events - 0 results filter	Bug	Normal	RELEASED	- → 2
+Issues Not Completed	View in Issue Navigator
+Key	Summary	Issue Type	Priority	Status	Story Points (1)
+JT-6960	NL - Ajouter un lien "Paramétrer mes alertes"	New Feature	Normal	READY FOR RELEASE	1

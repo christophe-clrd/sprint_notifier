@@ -39,4 +39,4 @@ puts "Tickets not delivered during last sprint (will be transferred to next spri
 classifier('last_sprint.txt','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
 
 puts "Other tickets planned for next sprint)\n\n"
-classifier('next_sprint.txt','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+classifier('next_sprint.txt','TO DO','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV', 'RELEASED', 'CLOSED', 'DONE')
