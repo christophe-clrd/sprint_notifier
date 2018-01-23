@@ -1,15 +1,19 @@
+$tickets_list = []
 
 def classifier(file, *statuses)
-   type = ["New Feature", "Improvement", "Task", "Bug"]
+  type = ["New Feature", "Improvement", "Task", "Bug"]
 
   type.each do |type|
     tickets = []
-     i = 0
+    i = 0
+    x = []
 
     File.open(file).readlines.each do |line|
       if line.include?(type) && statuses.inject(false) { |memo, status| line.include?(status) || memo }
+        unless $tickets_list.include?(line.split("\t")[1])
         i += 1
         tickets << line.split("\t")[1]
+        end
       end
     end
 
@@ -17,6 +21,7 @@ def classifier(file, *statuses)
       puts "#{i} #{type.downcase}#{'s' if i > 1}"
       puts tickets
       puts "\n"
+      $tickets_list = tickets + ($tickets_list - tickets)
     end
   end
 end
@@ -38,5 +43,5 @@ classifier('last_sprint.txt', 'RELEASED', 'CLOSED', 'DONE')
 puts "Tickets not delivered during last sprint (will be transferred to next sprint)\n\n"
 classifier('last_sprint.txt','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
 
-puts "Other tickets planned for next sprint)\n\n"
+puts "Other tickets planned for next sprint\n\n"
 classifier('next_sprint.txt','TO DO','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV', 'RELEASED', 'CLOSED', 'DONE')
