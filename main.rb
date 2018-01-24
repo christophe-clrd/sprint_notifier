@@ -1,28 +1,24 @@
 $tickets_list = []
+STATUSES_DONE = ['DONE'].freeze
+STATUSES_ONGOING = ['TO DO','IN DEV','TECH REVIEW','FUNCTIONAL REVIEW'].freeze
+STATUSES_ALL = (STATUSES_DONE + STATUSES_ONGOING).freeze
+TITLE_DELIVERED = "Tickets delivered during last sprint"
+TITLE_NOT_DELIVERED = "Tickets not delivered during last sprint (will be transferred to next sprint)"
+TITLE_PLANNED = "Other tickets planned for next sprint"
 
-def classifier(file, section_title, *statuses)
+def section_builder(file, section_title, *statuses)
   type = ["New Feature", "Improvement", "Task", "Bug"]
   text = []
 
   type.each do |type|
-    tickets = []
-    i = 0
-
-    section_reader(type, file, statuses, text, i, tickets)
-    if i>0
-      text << "#{i} #{type.downcase}#{'s' if i > 1}"
-      text << tickets
-      tickets << "\n"
-      $tickets_list = tickets + ($tickets_list - tickets)
-    end
+    type_builder(type, file, statuses, text)
   end
-
-  puts section_title
-  puts text
-
+  section_printer(section_title, text)
 end
 
-def section_reader(type, file, statuses, text, i, tickets)
+def type_builder(type, file, statuses, text)
+  tickets = []
+  i = 0
   File.open(file).readlines.each do |line|
     if line.include?(type) && statuses.inject(false) { |memo, status| line.include?(status) || memo }
       unless $tickets_list.include?(line.split("\t")[1])
@@ -31,6 +27,19 @@ def section_reader(type, file, statuses, text, i, tickets)
       end
     end
   end
+
+  if i>0
+    text << "#{i} #{type.downcase}#{'s' if i > 1}"
+    text << tickets
+    tickets << "\n"
+    $tickets_list = tickets + ($tickets_list - tickets)
+  end
+end
+
+def section_printer(title, content)
+  return nil if content.empty?
+  puts title
+  puts content
 end
 
 puts "Hi everybody,
@@ -45,8 +54,8 @@ Christophe & Laurent
 
 "
 
-classifier('last_sprint.txt', "Tickets delivered during last sprint\n", 'RELEASED', 'CLOSED', 'DONE')
+section_builder('last_sprint.txt', TITLE_DELIVERED, *STATUSES_DONE)
 
-classifier('last_sprint.txt',"Tickets not delivered during last sprint (will be transferred to next sprint)\n", 'IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV')
+section_builder('last_sprint.txt', TITLE_NOT_DELIVERED, *STATUSES_ONGOING)
 
-classifier('next_sprint.txt', "Other tickets planned for next sprint\n", 'TO DO','IN FUNCTIONAL REVIEW','IN REVIEW','IN DEVELOPMENT','OPEN / READY FOR DEV', 'RELEASED', 'CLOSED', 'DONE')
+section_builder('next_sprint.txt', TITLE_PLANNED, *STATUSES_ALL)
