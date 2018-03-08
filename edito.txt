@@ -1,0 +1,9 @@
+Hi everybody,
+
+Here is the email we send you on a weekly basis about the tickets that have been developed or that are scheduled in the Career Services Sprint.
+This does not mean that everything will always be released on time (depending on the number of urgent bugs we have to solve for instance).
+Feel free if you have questions about that,
+
+Have a nice day,
+
+Christophe & Laurent

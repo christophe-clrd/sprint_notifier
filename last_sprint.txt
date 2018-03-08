@@ -1,16 +1,20 @@
 Completed Issues	View in Issue Navigator
-Key	Summary	Issue Type	Priority	Status	Story Points (15 → 27)
-JT-6795 *	Users without role and profile can't create a company/student account	Improvement	Normal	RELEASED	5
-JT-6919 *	[SCHO] School conf - Curriculums rank is not well saved	Bug	Normal	RELEASED	2
-JT-6921	[Scho] Appointment - Avatar des conseillers pop en haut de la page	Bug	Normal	RELEASED	- → 4
-JT-6962	NL - Ajouter le type de l'événement	New Feature	Normal	RELEASED	1
-JT-7064 *	NL - Handle two Career Center logos in the event newsletter	Improvement	Normal	RELEASED	2
-JT-7094 *	[Scho] SSO student recruteurs are not redirected to their recruiter BO	Bug	Important	RELEASED	3
-JT-7106 *	[Scho] When a school has no banner the newsletter is not well displayed	Bug	Important	RELEASED	2
-JT-7178 *	EV - Update Image upload	Improvement	Normal	RELEASED	- → 3
-JT-7184	[Scho] Events RSS feed - The start date is called deadline in the description	Bug	Important	RELEASED	- → 1
-JT-7186	[Scho] Send again the confirmation email to students from EBC	Task	Normal	RELEASED	- → 2
-JT-7188	Events - 0 results filter	Bug	Normal	RELEASED	- → 2
+Key	Summary	Issue Type	Priority	Status	Story Points (10)
+CS-1	Notification banner - Add roles targeting - DL 03-15	Improvement	Normal	DONE	3
+CS-23	EV - New candidates BO list - Update date format	Improvement	Normal	DONE	2
+CS-61	[SCHO] Timezone issue regarding events/events'slots - Grenoble EM	Bug	Important	DONE	3
+CS-68	[Scho] The deleted inactive profiles are still active in the talent bank	Bug	Important	DONE	2
+CS-79	JT Admin role for Tommy	Task	Important	DONE	0
+CS-81 *	[Scho] FO access is not possible to GEM Forum Stage & Emploi // Job & Intership Fair	Bug	Important	DONE	-
 Issues Not Completed	View in Issue Navigator
-Key	Summary	Issue Type	Priority	Status	Story Points (1)
-JT-6960	NL - Ajouter un lien "Paramétrer mes alertes"	New Feature	Normal	READY FOR RELEASE	1
+Key	Summary	Issue Type	Priority	Status	Story Points (17)
+CS-3	Events - Make functions selection optional	Improvement	Normal	IN DEV	3
+CS-17	BO inscrits - Ajouter les informations de profil	New Feature	Normal	IN DEV	3
+CS-21	Unify timezones for all user profiles	Improvement	Important	FUNCTIONAL REVIEW	3
+CS-35	As a user with access to the backoffice, I can change my timezone in the backend/account/edit	Improvement	Normal	TECH REVIEW	2
+CS-73	[Scho] Balise For identification Norton Safeweb	Task	Important	TO DO	3
+CS-74	[Scho] Appointments - Reminders : Hide the room field when there is no room	Bug	Important	IN DEV	1
+CS-76	[Scho] Open Event in dutch Career Center fails	Bug	Important	FUNCTIONAL REVIEW	2
+Issues completed outside of this sprint	View in Issue Navigator
+Key	Summary	Issue Type	Priority	Status	Story Points (3)
+CS-72	[Scho] ADR Cronofy	Improvement	Important	DONE	3

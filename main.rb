@@ -6,6 +6,11 @@ TITLE_DELIVERED = "Tickets delivered during last sprint"
 TITLE_NOT_DELIVERED = "Tickets not delivered during last sprint (will be transferred to next sprint)"
 TITLE_PLANNED = "Other tickets planned for next sprint"
 
+def mail_builder()
+  return get_file_as_string('edito.txt')+ section_builder('last_sprint.txt', TITLE_DELIVERED, *STATUSES_DONE) + section_builder('last_sprint.txt', TITLE_NOT_DELIVERED, *STATUSES_ONGOING) + section_builder('next_sprint.txt', TITLE_PLANNED, *STATUSES_ALL)
+end
+
+# Method to build a section (i.e "Tickets delivered during last sprint")
 def section_builder(file, section_title, *statuses)
   type = ["New Feature", "Improvement", "Task", "Bug"]
   text = []
@@ -13,9 +18,10 @@ def section_builder(file, section_title, *statuses)
   type.each do |type|
     type_builder(type, file, statuses, text)
   end
-  section_printer(section_title, text)
+  section_builder(section_title, text)
 end
 
+# Method to list the tickets of a type part (i.e "bugs")
 def type_builder(type, file, statuses, text)
   tickets = []
   i = 0
@@ -36,26 +42,31 @@ def type_builder(type, file, statuses, text)
   end
 end
 
-def section_printer(title, content)
+# Method to build a type section (i.e "1 improvement")
+def section_builder(title, content)
   return nil if content.empty?
-  puts title
-  puts content
+  return title + "\n" + content.join("\n")
 end
 
-puts "Hi everybody,
+# Method to get the edito as a string
+def get_file_as_string(filename)
+  data = ''
+  f = File.open(filename, "r")
+  f.each_line do |line|
+    data += line
+  end
+  return data
+end
 
-Here is the email we send you on a weekly basis about the tickets that have been developed or that are scheduled in the Career Services Sprint.
-This does not mean that everything will always be released on time (depending on the number of urgent bugs we have to solve for instance).
-Feel free if you have questions about that,
+@mail_content = mail_builder()
+#puts mail_builder()
 
-Have a nice day,
+# render template
+template = File.read('./template.html.erb')
+result = ERB.new(template).result(binding)
 
-Christophe & Laurent
-
-"
-
-section_builder('last_sprint.txt', TITLE_DELIVERED, *STATUSES_DONE)
-
-section_builder('last_sprint.txt', TITLE_NOT_DELIVERED, *STATUSES_ONGOING)
-
-section_builder('next_sprint.txt', TITLE_PLANNED, *STATUSES_ALL)
+# write result to file
+# File.open('filename.html', 'w+') do |f|
+File.new('filename.html', 'w+') do |f|
+  f.write result
+end
