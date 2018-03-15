@@ -20,6 +20,7 @@ email = {
   title: "Career Services Sprint Update",
   sprint_end_date: "#{(Time.now).strftime("%B")} #{Time.now.day}, #{Time.now.year}",
   edito: edito,
+  witty_comment: "Beat that, Talent Acquisition ! ;)",
   first_section: {
     title: "Tickets delivered during last sprint",
     statuses: ['DONE'],
