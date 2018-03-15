@@ -3,10 +3,23 @@ require "date"
 
 $tickets_list = []
 
+# Method to get the edito as a string
+def get_file_as_string(filename)
+  data = ''
+  f = File.open(filename, "r")
+  f.each_line do |line|
+    data += line
+  end
+  return data
+end
+
+edito = get_file_as_string('edito.txt')
+
+
 email = {
   title: "Career Services Sprint Update",
-  sprint_end_date: "#{(Time.now).strftime("%B")} #{Time.now.day},#{Time.now.year}",
-  edito: "edito blabla",
+  sprint_end_date: "#{(Time.now).strftime("%B")} #{Time.now.day}, #{Time.now.year}",
+  edito: edito,
   first_section: {
     title: "Tickets delivered during last sprint",
     statuses: ['DONE'],
@@ -94,22 +107,24 @@ end
 def type_looper(email, section)
   type = [:new_features, :improvements, :tasks, :bugs]
   type.each do |type|
-    type_builder(email, section, email[section][type][:type], email[section][:file], email[section][:statuses], email[section][type][:tickets], email[section][type][:nb_tickets])
+    tickets_looper(email, section, email[section][type][:type], email[section][:file], email[section][:statuses], email[section][type][:tickets], email[section][type])
   end
 end
 
-def type_builder(email, section, type, file, statuses, tickets, i)
+def tickets_looper(email, section, type, file, statuses, tickets, lol)
+  i = 0
   File.open(file).readlines.each do |line|
     if line.include?(type) && statuses.inject(false) { |memo, status| line.include?(status) || memo }
       unless $tickets_list.include?(line.split("\t")[1])
-      i += 1
       tickets << line.split("\t")[1]
+      i = i + 1
       end
     end
   end
 
   if i>0
     $tickets_list = tickets + ($tickets_list - tickets)
+    lol[:nb_tickets] = i
   end
 end
 
@@ -123,3 +138,16 @@ end
 
 section_looper(email)
 puts email
+
+@email = email
+#puts mail_builder()
+
+# render template
+template = File.read('./template.html.erb')
+result = ERB.new(template).result(binding)
+
+# write result to file
+# File.open('filename.html', 'w+') do |f|
+File.open('filename.html', 'w+') do |f|
+  f.write result
+end

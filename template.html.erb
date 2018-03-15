@@ -122,12 +122,12 @@
                                     <tbody>
                                         <tr>
                                             <td style="word-break:break-word;font-size:0px;padding:60px 40px 0px;" align="left">
-                                                <div class="" style="cursor:auto;color:#4a4a4a;font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:24px;line-height:33px;text-align:left;"><strong>Career Services sprint update </strong></div>
+                                                <div class="" style="cursor:auto;color:#4a4a4a;font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:24px;line-height:33px;text-align:left;"><strong><%=@email[:title]%></strong></div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="word-break:break-word;font-size:0px;padding:10px 40px 60px;" align="left">
-                                                <div class="" style="cursor:auto;color:#4a4a4a;font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:22px;text-align:left;"><i>March 07, 2018</i></div>
+                                                <div class="" style="cursor:auto;color:#4a4a4a;font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:16px;line-height:22px;text-align:left;"><i><%=@email[:sprint_end_date]%></i></div>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -166,24 +166,24 @@
                                     <tbody>
                                         <tr>
                                             <td style="word-break:break-word;font-size:0px;padding:0px;" align="left">
-                                                <div class="" style="cursor:auto;color:#4a4a4a;font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:14px;line-height:24px;text-align:left;">
-                                                  Hi everybody,<br>
-                                                  <br>
-                                                  This week, we'll have Sacha, Vlatka and Florent working on the sprint.<br>
-                                                  Have a nice day !<br>
-                                                  <br>
-                                                  Laurent and Christophe<br>
-                                                  <br>
-                                                </div>
+                                                <div class="" style="cursor:auto;color:#4a4a4a;font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:14px;line-height:24px;text-align:left;"><%=@email[:edito]%></div>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="word-break:break-word;font-size:0px;padding:0px;" align="left">
                                                 <div>
-                                                  <h3 style="font-size:13.5pt;font-family:Helvetica,sans-serif;color:rgb(46,188,111)">Tickets delivered during last sprint</h3>
-                                                  <h4 style="font-size:12pt;font-family:Helvetica,sans-serif;color:rgb(74,74,74)">1 improvement</h4>
-                                                  <li style="font-size:10pt;font-family:'Open Sans', Helvetica, Arial, sans-serif;color:#4a4a4a);background:white">Lorem Ipsum</li>
-                                                  <li style="font-size:10pt;font-family:'Open Sans', Helvetica, Arial, sans-serif;color:#4a4a4a);background:white"><%=@mail_content%></li>
+                                                  <% [:first_section, :second_section, :third_section].each do |section| %>
+                                                    <h3 style="font-size:13.5pt;font-family:Helvetica,sans-serif;color:rgb(46,188,111)"><%= @email[section][:title] %></h3>
+                                                    <% [:new_features, :improvements, :tasks, :bugs].each do |type| %>
+                                                      <% if @email[section][type][:nb_tickets] > 0 %>
+                                                        <h4 style="font-size:12pt;font-family:Helvetica,sans-serif;color:rgb(74,74,74)"><%= @email[section][type][:nb_tickets]%> <%= pluralize(@email[section][type][:type].downcase, @email[section][type][:nb_tickets]) %></h4>
+                                                        <% @email[section][type][:tickets].each do |ticket| %>
+                                                          <li style="color:#4a4a4a;font-family:'Open Sans', Helvetica, Arial, sans-serif;font-size:14px;line-height:24px;text-align:left"><%= ticket %></li>
+                                                        <% end %>
+                                                      <% end %>
+                                                    <% end %>
+                                                    <br/>
+                                                  <% end %>
                                                 </div>
                                             </td>
                                         </tr>
