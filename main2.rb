@@ -3,23 +3,10 @@ require "date"
 
 $tickets_list = []
 
-# Method to get the edito as a string
-def get_file_as_string(filename)
-  data = ''
-  f = File.open(filename, "r")
-  f.each_line do |line|
-    data += line
-  end
-  return data
-end
-
-edito = get_file_as_string('edito.txt')
-
-
 email = {
   title: "Career Services Sprint Update",
   sprint_end_date: "#{(Time.now).strftime("%B")} #{Time.now.day}, #{Time.now.year}",
-  edito: edito,
+  edito: "“Hi everybody,<br>This week, we'll have Sacha, Vlatka and Florent working on the sprint.<br>Have a nice day !“<br><br>Christophe and Laurent",
   witty_comment: "Beat that, Talent Acquisition ! ;)",
   first_section: {
     title: "Tickets delivered during last sprint",
