@@ -7,7 +7,7 @@ email = {
   title: "Career Services Sprint Update",
   sprint_end_date: "#{(Time.now).strftime("%B")} #{Time.now.day}, #{Time.now.year}",
   edito: "“Hi everybody,<br>This week, we'll have Sacha, Vlatka and Florent working on the sprint.<br>Have a nice day !“<br><br>Christophe and Laurent",
-  witty_comment: "Beat that, Talent Acquisition ! ;)",
+  witty_comment: "Thomas P. “Tu quoque mi fili“",
   first_section: {
     title: "Tickets delivered during last sprint",
     statuses: ['DONE'],
@@ -35,7 +35,7 @@ email = {
   },
   second_section: {
     title: "Tickets not delivered during last sprint (will be transferred to next sprint)",
-    statuses: ['TO DO','IN DEV','TECH REVIEW','FUNCTIONAL REVIEW'],
+    statuses: ['TO DO','IN DEV','TECH REVIEW','FUNCTIONAL REVIEW', 'READY FOR RELEASE'],
     file: 'last_sprint.txt',
     new_features: {
       type: "New Feature",
@@ -60,7 +60,7 @@ email = {
   },
   third_section: {
     title: "Other tickets planned for next sprint",
-    statuses: ['TO DO','IN DEV','TECH REVIEW','FUNCTIONAL REVIEW', 'DONE'],
+    statuses: ['TO DO','IN DEV','TECH REVIEW','FUNCTIONAL REVIEW', 'READY FOR RELEASE','DONE'],
     file: 'next_sprint.txt',
     new_features: {
       type: "New Feature",
