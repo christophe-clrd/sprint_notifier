@@ -173,7 +173,7 @@
                                             <td style="word-break:break-word;font-size:0px;padding:0px;" align="left">
                                                 <div>
                                                   <% [:first_section, :second_section, :third_section].each do |section| %>
-                                                    <h3 style="font-size:13.5pt;font-family:Helvetica,sans-serif;color:#FF6A77"><%= @email[section][:title] %></h3>
+                                                    <h3 style="font-size:13.5pt;font-family:Helvetica,sans-serif;color:#FF6A77"><br /><%= @email[section][:title] %></h3>
                                                     <% [:new_features, :improvements, :tasks, :bugs].each do |type| %>
                                                       <% if @email[section][type][:nb_tickets] > 0 %>
                                                         <h4 style="font-size:12pt;font-family:Helvetica,sans-serif;color:rgb(74,74,74)"><%= @email[section][type][:nb_tickets]%> <%= pluralize(@email[section][type][:type].downcase, @email[section][type][:nb_tickets]) %></h4>
